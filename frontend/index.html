@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>SafeShop - Eksamen</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; color: #1a1a1a; padding: 40px; }
+        .container { background: white; padding: 30px; border-radius: 8px; max-width: 500px; margin: 0 auto; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h1 { color: #002b49; }
+        input, select { width: 100%; padding: 10px; margin: 10px 0; border: 2px solid #002b49; border-radius: 4px; box-sizing: border-box; }
+        button { background-color: #002b49; color: white; padding: 12px; border: none; width: 100%; border-radius: 4px; font-weight: bold; cursor: pointer; }
+        button:hover { background-color: #004b80; }
+        #statusMelding { font-weight: bold; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>SafeShop AS</h1>
+    <p>Send inn din bestilling til databasen:</p>
+    
+    <form id="orderForm" onsubmit="sendBestilling(event)">
+        <label for="kundenavn">Ditt navn (GDPR-minimert):</label>
+        <input type="text" id="kundenavn" required placeholder="Ola Nordmann">
+        
+        <label for="produktvalg">Velg produkt:</label>
+        <select id="produktvalg">
+            <option value="Ullgenser">Ullgenser (599,-)</option>
+            <option value="Ullsokker">Ullsokker (149,-)</option>
+        </select>
+        
+        <button type="submit">Fullfør bestilling</button>
+    </form>
+    
+    <p id="statusMelding"></p>
+</div>
+
+<script>
+    async function sendBestilling(event) {
+        event.preventDefault();
+        
+        let navn = document.getElementById('kundenavn').value;
+        let produkt = document.getElementById('produktvalg').value;
+        let melding = document.getElementById('statusMelding');
+        
+        try {
+            let response = await fetch('http://127.0.0.1:5000/api/bestill', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ navn: navn, produkt: produkt })
+            });
+            
+            let resultat = await response.json();
+            melding.textContent = resultat.melding;
+            
+            if (resultat.status === "ok") {
+                melding.style.color = "green";
+            } else {
+                melding.style.color = "red";
+            }
+        } catch (error) {
+            melding.textContent = "Kunne ikke koble til Python-serveren. Kjører skriptet?";
+            melding.style.color = "red";
+        }
+    }
+</script>
+</body>
+</html>

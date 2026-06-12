@@ -17,7 +17,6 @@ def opprett_database():
     conn.close()
 
 def er_input_sikker(tekst):
-    # Sjekker etter farlige mønstre – bruker ordgrenser for å unngå falske positiver
     farlige_mønstre = ["<", ">", "DROP TABLE", "SELECT *", "OR 1=1", ";--"]
     tekst_upper = tekst.upper()
     for mønster in farlige_mønstre:
@@ -46,7 +45,6 @@ def motta_bestilling():
     if not er_input_sikker(navn):
         return jsonify({"status": "feil", "melding": "Ugyldige tegn oppdaget. Sikkerhetsblokkering!"}), 400
 
-    # Bruker 'with' for å sikre at tilkoblingen alltid lukkes
     try:
         with sqlite3.connect('safeshop.db') as conn:
             cursor = conn.cursor()
@@ -65,4 +63,4 @@ def motta_bestilling():
 if __name__ == '__main__':
     opprett_database()
     print("Serveren kjører på http://127.0.0.1:5000")
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=False)

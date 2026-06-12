@@ -3,14 +3,13 @@ async function sendBestilling(event) {
         
         let navn = document.getElementById('kundenavn').value;
         let produkt = document.getElementById('produktvalg').value;
-        let frakt = document.getElementById('fraktvalg').value; // Henter ut lokasjon/frakt
+        let frakt = document.getElementById('fraktvalg').value; 
         let melding = document.getElementById('statusMelding');
         
         melding.className = "";
         melding.textContent = "Sender bestilling...";
         
         try {
-            // Sender både navn, produkt og den nye fraktmetoden til Python API-et ditt
             let response = await fetch('http://127.0.0.1:5000/api/bestill', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -30,7 +29,7 @@ async function sendBestilling(event) {
                 melding.className = "feil";
             }
         } catch (error) {
-            melding.textContent = "Kunne ikke koble til Python-serveren. Kjører skriptet?";
+            melding.textContent = "Kunne ikke koble til Python-serveren.";
             melding.className = "feil";
         }
     }

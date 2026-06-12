@@ -29,7 +29,7 @@ def er_input_sikker(tekst):
 def serve_frontend():
     return send_from_directory('../frontend', 'index.html')
 
-@app.route('/api/bestill', methods=['POST'])
+@app.route('http://192.168.20.62:5000/', methods=['POST'])
 def motta_bestilling():
     # Sjekk at request faktisk inneholder JSON
     data = request.get_json(silent=True)

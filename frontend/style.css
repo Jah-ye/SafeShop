@@ -1,110 +1,118 @@
-/* Grunnleggende oppsett */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f7f6;
-    color: #1a1a1a; /* Mørk tekst for god kontrast */
-    line-height: 1.6;
-}
+/* Grunnleggende oppsett og UU-tilpasning */
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #f4f4f4; 
+            color: #1a1a1a; 
+            padding: 20px; 
+            line-height: 1.5;
+        }
+        
+        .container { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 8px; 
+            max-width: 650px; 
+            margin: 0 auto; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+        }
+        
+        h1, h2 { 
+            color: #002b49; 
+            margin-top: 0;
+        }
 
-header {
-    background-color: #002b49; /* Mørkeblå (God kontrast mot hvit tekst) */
-    color: white;
-    padding: 1rem;
-    text-align: center;
-}
+        /* Produktgalleri */
+        .produkt-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
 
-header nav a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: bold;
-}
+        .produkt-kort {
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            padding: 10px;
+            text-align: center;
+            background: #fafafa;
+        }
 
-header nav a:hover {
-    text-decoration: underline;
-}
+        .produkt-bilde {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 10px;
+            display: block;
+        }
 
-main {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-}
+        .produkt-tittel {
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
 
-section {
-    background: white;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
+        .produkt-pris {
+            color: #002b49;
+            font-size: 0.85rem;
+        }
 
-/* Søk og skjema */
-.search-box, .form-group {
-    margin-bottom: 15px;
-}
+        /* Skjemaelementer */
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+        
+        input, select { 
+            width: 100%; 
+            padding: 12px; 
+            margin-bottom: 15px; 
+            border: 2px solid #002b49; 
+            border-radius: 4px; 
+            box-sizing: border-box; 
+            font-size: 1rem;
+        }
+        
+        button { 
+            background-color: #002b49; 
+            color: white; 
+            padding: 14px; 
+            border: none; 
+            width: 100%; 
+            border-radius: 4px; 
+            font-weight: bold; 
+            font-size: 1rem;
+            cursor: pointer; 
+            transition: background-color 0.2s ease;
+            margin-top: 10px;
+        }
+        
+        button:hover { 
+            background-color: #004b80; 
+        }
 
-input[type="text"], select {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 2px solid #002b49;
-    border-radius: 4px;
-    font-size: 1rem;
-}
+        /* Kritisk for UU: Tydelig markering ved tastaturnavigasjon (Tab) */
+        input:focus-visible, select:focus-visible, button:focus-visible {
+            outline: 3px solid #ff9800;
+            outline-offset: 2px;
+        }
+        
+        /* Statusmeldinger med godkjent fargekontrast (WCAG AA) */
+        #statusMelding { 
+            font-weight: bold; 
+            margin-top: 20px; 
+            padding: 12px;
+            border-radius: 4px;
+        }
 
-button {
-    background-color: #002b49;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-}
+        .suksess {
+            color: #1b5e20; 
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+        }
 
-button:hover {
-    background-color: #004b80;
-}
-
-/* Produktkort */
-.product-grid {
-    display: flex;
-    justify-content: center;
-}
-
-.product-card {
-    border: 1px solid #ccc;
-    padding: 15px;
-    border-radius: 5px;
-    text-align: center;
-    background: #fff;
-    max-width: 300px;
-}
-
-.product-card img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 4px;
-}
-
-.price {
-    font-weight: bold;
-    color: #d9534f;
-    font-size: 1.2rem;
-}
-
-.status-msg {
-    margin-top: 15px;
-    font-weight: bold;
-}
-
-footer {
-    text-align: center;
-    padding: 20px;
-    background: #002b49;
-    color: white;
-    margin-top: 40px;
-}
+        .feil {
+            color: #d32f2f; 
+            background-color: #ffebee;
+            border: 1px solid #ffcdd2;
+        }

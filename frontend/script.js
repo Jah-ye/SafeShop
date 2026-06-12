@@ -10,7 +10,7 @@ async function sendBestilling(event) {
         melding.textContent = "Sender bestilling...";
         
         try {
-            let response = await fetch('http://127.0.0.1:5000/api/bestill', {
+            let response = await fetch('', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
